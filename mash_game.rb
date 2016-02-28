@@ -74,9 +74,13 @@ def mashy(num)
 	partner = ["Kate", "William", "Harry", "Phillip"]
 #mash_ary = [["Mansion", "Alley way", "Shed", "House"], ["Honda", "Audi", "Golf", "Mercedes"], [1, 2, 3, 4], ["Kate", "William", "Harry", "Phillip"]]
 	mash_ary = [mash, cars, children, partner]
-	
-	which_arr = (num-1)/4
-	rem = (num-1)%4
+	if num <= mash_ary.flatten.length
+		which_arr = (num-1)/4
+		rem = (num-1)%4		
+	else
+		which_arr = (((num-1)%mash_ary.flatten.length)/4)#/4
+		rem = ((num-1)%4)%4
+	end
 	return mash_ary[which_arr].delete_at(rem)
 end	
 =begin
