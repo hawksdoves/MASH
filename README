@@ -1,0 +1,12 @@
+Inspired by the children’s game, MASH.
+
+https://en.wikipedia.org/wiki/MASH_(game)
+
+For this first draft, without a user interface, I have generated a random number to determine which “item” to cross off. After an item is crossed off, a new random number is generated and again the corresponding item is crossed off. This continues until there is only 1 item left in each of the categories.
+
+The four categories are:
+Where you will live (This is pre-determined: Mansion, Alley Way, Shed, House (MASH))
+What car you will drive
+Number of children you will have
+Who you will marry
+
