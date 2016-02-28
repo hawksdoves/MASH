@@ -1,79 +1,92 @@
-=begin
-MASH = mansion, alley way, shed, house
-Cars
-Babies
-People
-5 arrays with 4 in each section.
-=end
-=begin
-mash_ary = ["mansion", "alley way", "shed", "house"]
-puts "You are playing MASH"
+mash = ["mansion", "alley way", "shed", "house"]
+puts "You are playing MASH!!!"
 
 # -----------------------------------------------------------------
-
-puts "Give a car you like"
-c1 = gets.chomp.downcase
-mash_ary << c1
-puts "Give a 2nd car you like"
-c2 = gets.chomp.downcase
-mash_ary << c2
-puts "Give a 3rd car you like"
-c3 = gets.chomp.downcase
-mash_ary << c3
-puts "Give a 4th car you like"
-c4 = gets.chomp.downcase
-mash_ary << c4
+cars = []
+puts "Name a car you like"
+cars << gets.chomp
+until cars.length==4
+	puts "Name another car you like"
+	cars << gets.chomp
+end
 
 # -----------------------------------------------------------------
-
-puts "Give a number of children that you would like"
-b1 = gets.chomp
-mash_ary << b1
-puts "Give another number of children that you would like"
-b2 = gets.chomp
-mash_ary << b2
-puts "Give another number of children that you would like"
-b3 = gets.chomp
-mash_ary << b3
-puts "Give another number of children that you would like"
-b4 = gets.chomp
-mash_ary << b4
+children = []
+puts "How many children might you want?"
+children << gets.chomp
+until children.length==4
+	puts "How many children might you want?"
+	children << gets.chomp
+end
 
 # -----------------------------------------------------------------
-
-puts "Give the name of someone you have a crush on or would like to marry"
-p1 = gets.chomp
-mash_ary << p1
-puts "Give another name of someone you have a crush on or would like to marry"
-p2 = gets.chomp
-mash_ary << p2
-puts "Give another name of someone you have a crush on or would like to marry"
-p3 = gets.chomp
-mash_ary << p3
-puts "Give another name of someone you have a crush on or would like to marry"
-p4 = gets.chomp
-mash_ary << p4
+partner = []
+puts "Give me the name of someone you might want to marry."
+partner << gets.chomp
+until partner.length==4
+	puts "Give me another name of someone you might want to marry."
+	partner << gets.chomp
+end
 
 # -----------------------------------------------------------------
-=end
-mash = ["Mansion", "Alley way", "Shed", "House"]
-cars = ["Honda", "Audi", "Golf", "Mercedes"]
-children = [1, 2, 3, 4] 
-partner = ["Kate", "William", "Harry", "Phillip"]
-#mash_ary = [["Mansion", "Alley way", "Shed", "House"], ["Honda", "Audi", "Golf", "Mercedes"], [1, 2, 3, 4], ["Kate", "William", "Harry", "Phillip"]]
 mash_ary = [mash, cars, children, partner]
-#puts "Please give a number between 1 and 10"
-#num = gets.chomp.to_i
 
-# -----------------------------------------------------------------
+
+
+
+def mashy2(num, mash, cars, children, partner)
+
+	mash_ary = [mash, cars, children, partner]
+
+	if num <= mash_ary.flatten.length
+		which_arr = (num-1)/4
+		which_arr = testing(mash_ary, which_arr)
+		rem = (num-1)%4		
+	else
+		which_arr = (((num-1)%mash_ary.flatten.length)/4)
+		which_arr = testing(mash_ary, which_arr)
+		rem = ((num-1)%4)%4
+	end
+
+	return mash_ary[which_arr].delete_at(rem)
+end	
+
+
+def testing(mash_ary, which_arr)
+    if mash_ary[which_arr].length!=1
+        which_arr
+    elsif mash_ary[which_arr+1].length!=1
+        which_arr +=1
+    elsif mash_ary[which_arr+2].length!=1
+        which_arr +=2
+    elsif mash_ary[which_arr+3].length!=1
+        which_arr +=3
+    end
+     which_arr
+end
+
+while mash_ary.flatten.length >4
+	numbers = rand(0..50)
+	mashy2(numbers, mash, cars, children, partner)
+end
+
+if children[0]=="1" 
+puts "You will live in a " + mash.join + ", drive a " + cars.join + " car, have " + children.join + " child and marry " + partner.join + "!"
+else
+puts "You will live in a " + mash.join + ", drive a " + cars.join + " car, have " + children.join + " children and marry " + partner.join + "!"
+end
+=begin 
+I used the below method for my spec when testing whether my code was deleting the correct index
 
 def mashy(num)
+
 	mash = ["Mansion", "Alley way", "Shed", "House"]
 	cars = ["Honda", "Audi", "Golf", "Mercedes"]
 	children = [1, 2, 3, 4] 
 	partner = ["Kate", "William", "Harry", "Phillip"]
-#mash_ary = [["Mansion", "Alley way", "Shed", "House"], ["Honda", "Audi", "Golf", "Mercedes"], [1, 2, 3, 4], ["Kate", "William", "Harry", "Phillip"]]
+
 	mash_ary = [mash, cars, children, partner]
+
 	if num <= mash_ary.flatten.length
 		which_arr = (num-1)/4
 		rem = (num-1)%4		
@@ -83,12 +96,4 @@ def mashy(num)
 	end
 	return mash_ary[which_arr].delete_at(rem)
 end	
-=begin
-Use that number given to iterate through each array and delete the item in the array that it stops at.
-.delete_at(number) - delete from an index in an array
-
-
-puts mash_ary.inspect
-mash_ary.delete_at(number-1)
-puts mash_ary.inspect
 =end
