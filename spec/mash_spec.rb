@@ -1,4 +1,4 @@
-require 'mash_game'
+require './mash_game'
 
 describe 'mash' do 
 	#mash = ["Mansion", "Alley way", "Shed", "House"]

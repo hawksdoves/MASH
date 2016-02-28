@@ -56,17 +56,29 @@ mash_ary << p4
 
 # -----------------------------------------------------------------
 =end
-mash_ary=["mansion", "alley way", "shed", "house","Mercedes","BMW","2","0","5","1","Ford","Nissan","Harry","William","Kate","Phillip",]
-puts "Please give a number between 1 and 10"
-num = gets.chomp.to_i
+mash = ["Mansion", "Alley way", "Shed", "House"]
+cars = ["Honda", "Audi", "Golf", "Mercedes"]
+children = [1, 2, 3, 4] 
+partner = ["Kate", "William", "Harry", "Phillip"]
+#mash_ary = [["Mansion", "Alley way", "Shed", "House"], ["Honda", "Audi", "Golf", "Mercedes"], [1, 2, 3, 4], ["Kate", "William", "Harry", "Phillip"]]
+mash_ary = [mash, cars, children, partner]
+#puts "Please give a number between 1 and 10"
+#num = gets.chomp.to_i
 
 # -----------------------------------------------------------------
 
-while mash_ary.length < num
-       num -= mash_ary.length
-end
-mash_ary.delete_at(num-1)
-puts mash_ary
+def mashy(num)
+	mash = ["Mansion", "Alley way", "Shed", "House"]
+	cars = ["Honda", "Audi", "Golf", "Mercedes"]
+	children = [1, 2, 3, 4] 
+	partner = ["Kate", "William", "Harry", "Phillip"]
+#mash_ary = [["Mansion", "Alley way", "Shed", "House"], ["Honda", "Audi", "Golf", "Mercedes"], [1, 2, 3, 4], ["Kate", "William", "Harry", "Phillip"]]
+	mash_ary = [mash, cars, children, partner]
+	
+	which_arr = (num-1)/4
+	rem = (num-1)%4
+	return mash_ary[which_arr].delete_at(rem)
+end	
 =begin
 Use that number given to iterate through each array and delete the item in the array that it stops at.
 .delete_at(number) - delete from an index in an array
